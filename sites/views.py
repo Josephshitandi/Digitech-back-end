@@ -19,3 +19,30 @@ class LoginAPI(KnoxLoginView):
         user = serializer.validated_data['user']
         login(request, user)
         return super(LoginAPI, self).post(request, format=None)
+    
+    
+    class IsAssigned(permissions.BasePermission): 
+    """
+    Only person who assigned has permission
+    """
+    def has_object_permission(self, request, view, obj):
+		# check if user who launched request is object owner 
+        if obj.assigned_to == request.user: 
+            return True
+        return False
+class IsReadOnlyOrIsAuthenticated(permissions.BasePermission):
+    def has_permission(self, request, view):
+        authenticated = request.user.is_authenticated
+        if not authenticated:
+            if view.action == '/':
+                return True
+            else:
+                return False
+        else:
+            return True
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing user instances.
+    """
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
