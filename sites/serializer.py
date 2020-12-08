@@ -37,4 +37,10 @@ class UserRegistrationSerializer(serializers.Serializer):
             raise serializers.ValidationError("Those passwords don't match.")
         return data
 
+        
 
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ('id', 'name', 'email', 'status', 'image','user')
+        
