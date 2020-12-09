@@ -48,3 +48,8 @@ class SiteSerializer(serializers.ModelSerializer):
         model = Site
         fields = ('id', 'name', 'email', 'location', 'image','admin','description')
         
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Site
+        fields = ('id', 'title', 'text', 'date', 'site','user')
+        
