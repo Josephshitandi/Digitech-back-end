@@ -60,3 +60,11 @@ class SiteViewSet(viewsets.ModelViewSet):
     """
     serializer_class = SiteSerializer
     queryset = Site.objects.all()
+    
+class ReviewViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing profile instances.
+    """
+    serializer_class = ReviewSerializer
+    queryset = Review.objects.all()
+    
