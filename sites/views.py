@@ -21,7 +21,7 @@ class LoginAPI(KnoxLoginView):
         return super(LoginAPI, self).post(request, format=None)
     
     
-    class IsAssigned(permissions.BasePermission): 
+class IsAssigned(permissions.BasePermission): 
     """
     Only person who assigned has permission
     """

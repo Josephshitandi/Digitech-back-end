@@ -104,6 +104,7 @@ MODE=config("MODE", default="dev")
 SECRET_KEY = 'h9a#8q#lfoqyr8^cee!l1hi)*%$@kq9*hmruz)=r8ob5_s%9ug'
 DEBUG = config('DEBUG', default=False, cast=bool)
 # development
+
 if config('MODE')=="dev":
    DATABASES = {
        'default': {

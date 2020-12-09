@@ -11,16 +11,26 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
+userSignup=UserViewSet.as_view({
+    'get':'list',
+    'post':'create'
+})
+userDetail=UserViewSet.as_view({
+    'get':'retrieve'
+})
+
+
 router = DefaultRouter()
+
+router.register(r'Profile', ProfileViewSet)
+router.register(r'User', UserViewSet)
 
 
 urlpatterns =[
-    path('', views.home, name='index'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('auth/signup/', userSignup, name='user_signup'),
-    path('auth/login/', userLogin, name='user_login'),
-    path('users/<int:pk>/', userDetail, name='user-detail'),
+    # path('users/<int:pk>/', userDetail, name='user-detail'),
     path('api/v1/', include(router.urls)),
     path('api/login/', LoginAPI.as_view(), name='login'),
     path('api/logout/', knox_views.LogoutView.as_view(), name='logout'),
