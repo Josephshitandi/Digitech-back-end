@@ -44,12 +44,15 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = ('id', 'name', 'email', 'status', 'image','user')
         
 class SiteSerializer(serializers.ModelSerializer):
+    admin = serializers.ReadOnlyField(source ='user.first_name')
     class Meta:
         model = Site
         fields = ('id', 'name', 'email', 'location', 'image','admin','description')
         
 class ReviewSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source ='user.first_name')
+    site = serializers.ReadOnlyField(source ='site.name')
     class Meta:
-        model = Site
+        model = Review
         fields = ('id', 'title', 'text', 'date', 'site','user')
         

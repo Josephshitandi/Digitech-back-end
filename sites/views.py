@@ -53,3 +53,10 @@ class ProfileViewSet(viewsets.ModelViewSet):
     """
     serializer_class = ProfileSerializer
     queryset = Profile.objects.all()
+    
+class SiteViewSet(viewsets.ModelViewSet):
+    """
+    A viewset for viewing and editing profile instances.
+    """
+    serializer_class = SiteSerializer
+    queryset = Site.objects.all()
