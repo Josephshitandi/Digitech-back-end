@@ -24,4 +24,11 @@ class UserTestClass(TestCase):
         user = User.objects.all()
         self.assertTrue(len(user)== 0) 
         
+    def test_update_user(self):
+        self.user.save_user()
+        self.user.update_user(self.user.id, 'Joseph')
+        changed_user = User.objects.filter(username ='Joseph')
+        self.assertTrue(len(changed_user) > 0)       
+
+        
         

@@ -67,10 +67,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _('users')
         
     def save_user(self):
-        self.save
+        self.save()
     
     def delete_user(self):
         self.delete()
+        
+    @classmethod
+    def update_user(cls, id, value):
+        cls.objects.filter(id=id).update(username=value)
+        
+    
+    
 
     def get_full_name(self):
         '''
