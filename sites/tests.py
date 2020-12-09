@@ -7,7 +7,7 @@ class UserTestClass(TestCase):
 
     # Set up method
     def setUp(self):
-        self.user = User(id=1,password='jose123',email='jose@gmail.com',username='shitandi',first_name='joseph',last_name='shitandi')
+        self.user = User(id=1,password='jose123',email='jose@gmail.com',first_name='joseph',last_name='shitandi')
         
     # Testing  instance
     def test_instance(self):
@@ -27,7 +27,7 @@ class UserTestClass(TestCase):
     def test_update_user(self):
         self.user.save_user()
         self.user.update_user(self.user.id, 'Joseph')
-        changed_user = User.objects.filter(username ='Joseph')
+        changed_user = User.objects.filter(last_name ='Joseph')
         self.assertTrue(len(changed_user) > 0)  
     
     # def test_email_user(self, subject, message, from_email=None, **kwargs):
@@ -36,5 +36,34 @@ class UserTestClass(TestCase):
     #     changed_user = User.objects.filter(username ='Joseph')
     #     self.assertTrue(len(changed_user) > 0)     
 
+class ProfileTestClass(TestCase):
+    
+    #  Saving user instance
+    def setUp(self):
+        self.user = User(id=1,password='jose123',email='jose@gmail.com',first_name='joseph',last_name='shitandi')
+        self.user.save_user()
+
+    
+        self.profile = Profile(id=1,email="joseph@gmail.com",user=self.user,name="joseph",status=True)
         
+    # Testing  instance
+    def test_instance(self):
+        self.assertTrue(isinstance(self.profile,Profile))
+        
+    # Testing Save Method
+    def test_save_profile(self):
+        self.profile.save_profile()
+        profile = Profile.objects.all()
+        self.assertTrue(len(profile) > 0)
+        
+    def test_delete_profile(self):
+        self.profile.delete_profile()
+        profile = Profile.objects.all()
+        self.assertTrue(len(profile)== 0) 
+        
+    def test_update_profile(self):
+        self.profile.save_profile()
+        self.profile.update_profile(self.profile.id, 'Joseph')
+        changed_profile = Profile.objects.filter(name ='Joseph')
+        self.assertTrue(len(changed_profile) > 0)        
         

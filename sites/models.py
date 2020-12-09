@@ -73,7 +73,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         
     @classmethod
     def update_user(cls, id, value):
-        cls.objects.filter(id=id).update(username=value)
+        cls.objects.filter(id=id).update(last_name=value)
         
     
     
@@ -106,10 +106,16 @@ class Profile (models.Model):
     
     def __str__(self):
         return f'{self.user.first_name} Profile'
+    
     def save_profile(self):
-        self.save
+        self.save()
+        
     def delete_profile(self):
         self.delete()
+        
+    @classmethod
+    def update_profile(cls, id, value):
+        cls.objects.filter(id=id).update(name=value)
         
 class Site(models.Model):
     name = models.CharField(max_length=250)
