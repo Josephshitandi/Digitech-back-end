@@ -19,3 +19,9 @@ class UserTestClass(TestCase):
         user = User.objects.all()
         self.assertTrue(len(user) > 0)
         
+    def test_delete_user(self):
+        self.user.delete_user()
+        user = User.objects.all()
+        self.assertTrue(len(user)== 0) 
+        
+        

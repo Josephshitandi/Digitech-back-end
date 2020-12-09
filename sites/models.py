@@ -68,6 +68,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         
     def save_user(self):
         self.save
+    
+    def delete_user(self):
+        self.delete()
 
     def get_full_name(self):
         '''
