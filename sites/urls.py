@@ -22,8 +22,10 @@ userDetail=UserViewSet.as_view({
 
 router = DefaultRouter()
 
-router.register(r'Profile', ProfileViewSet)
-router.register(r'User', UserViewSet)
+router.register(r'profile', ProfileViewSet)
+router.register(r'user', UserViewSet)
+router.register(r'site', SiteViewSet)
+router.register(r'review', ReviewViewSet)
 
 
 urlpatterns =[
