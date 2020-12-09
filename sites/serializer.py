@@ -43,3 +43,8 @@ class ProfileSerializer(serializers.ModelSerializer):
         model = Profile
         fields = ('id', 'name', 'email', 'status', 'image','user')
         
+class SiteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Site
+        fields = ('id', 'name', 'email', 'location', 'image','admin','description')
+        

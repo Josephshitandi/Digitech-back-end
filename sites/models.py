@@ -114,6 +114,7 @@ class Profile (models.Model):
 class Site(models.Model):
     name = models.CharField(max_length=250)
     location = models.CharField(max_length=250)
+    email = models.CharField(max_length=50)
     image = CloudinaryField('Profile pic', null=True, blank=True)
     admin = models.ForeignKey(User,on_delete=models.CASCADE)
     description = models.TextField()
