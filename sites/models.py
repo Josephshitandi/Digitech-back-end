@@ -48,7 +48,6 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    username = models.CharField(_('username'), max_length=30, unique=True)
     email = models.EmailField(_('email address'), unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
@@ -110,5 +109,21 @@ class Profile (models.Model):
     def save_profile(self):
         self.save
     def delete_profile(self):
+        self.delete()
+        
+class Site(models.Model):
+    name = models.CharField(max_length=250)
+    location = models.CharField(max_length=250)
+    image = CloudinaryField('Profile pic', null=True, blank=True)
+    admin = models.ForeignKey(User,on_delete=models.CASCADE)
+    description = models.TextField()
+    
+    def __str__(self):
+        return f'{self.name} site'
+    
+    def save_site(self):
+        self.save()
+        
+    def delete_site(self):
         self.delete()
         

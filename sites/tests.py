@@ -28,7 +28,13 @@ class UserTestClass(TestCase):
         self.user.save_user()
         self.user.update_user(self.user.id, 'Joseph')
         changed_user = User.objects.filter(username ='Joseph')
-        self.assertTrue(len(changed_user) > 0)       
+        self.assertTrue(len(changed_user) > 0)  
+    
+    # def test_email_user(self, subject, message, from_email=None, **kwargs):
+    #     self.user.save_user()
+    #     self.user.email_user(subject='Welcome',)
+    #     changed_user = User.objects.filter(username ='Joseph')
+    #     self.assertTrue(len(changed_user) > 0)     
 
         
         
